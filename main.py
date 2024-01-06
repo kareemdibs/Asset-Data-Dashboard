@@ -19,6 +19,7 @@ df1.insert(0, 'unique_id', range(1, len(df1) + 1))
 empty_df = pd.DataFrame()
 
 app = Dash(__name__)
+server = app.server
 
 df1['time_hr'] = pd.to_datetime(df1['time_hr']).dt.strftime('%Y-%m-%d %H:%M:%S')
 df1['da_schd'] = df1['da_schd'].abs()
@@ -190,4 +191,4 @@ def update_table(selected_asset_type, selected_asset_name, selected_date, n_clic
     return empty_df.to_dict('records'), fig2, fig3
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run_server(debug=False)
